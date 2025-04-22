@@ -51,8 +51,8 @@ graph LR
 ## Quickstart with Docker Compose
 
 1. Clone the repo:
-   ```bash
-git clone [URL](https://github.com/CodePerson2/Fastify_Status_Monitor-).git && cd Fastify_Status_Monitor
+   ```https://github.com/CodePerson2/Fastify_Status_Monitor-.git ```bash
+git clone [URL](https://github.com/CodePerson2/Fastify_Status_Monitor-) && cd Fastify_Status_Monitor
 ```
 2. Build and start all services:
    ```bash
