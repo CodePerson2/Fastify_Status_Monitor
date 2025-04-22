@@ -56,8 +56,8 @@ graph LR
    ```
 2. Build and start all services:
    ```bash
-docker-compose up --build
-```
+    docker-compose up --build
+    ```
 3. Open the frontend in your browser:
    - by default Vite will serve at `http://localhost:5173`
 
