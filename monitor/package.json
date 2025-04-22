@@ -1,0 +1,16 @@
+{
+  "name": "monitor",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "abort-controller": "^3.0.0",
+    "amqplib": "^0.10.7",
+    "fastify": "^5.3.1"
+  }
+}

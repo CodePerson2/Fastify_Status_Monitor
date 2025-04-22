@@ -1,0 +1,47 @@
+# docker-compose.yml
+version: '3.8'
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"        # AMQP
+      - "15672:15672"      # Management UI
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+
+  service-a:
+    build: ./service-a
+    ports:
+      - "3001:3001"
+    depends_on:
+      - rabbitmq
+    environment:
+      RABBITMQ_URL: amqp://guest:guest@rabbitmq:5672
+
+  service-b:
+    build: ./service-b
+    ports:
+      - "3002:3002"
+    depends_on:
+      - rabbitmq
+    environment:
+      RABBITMQ_URL: amqp://guest:guest@rabbitmq:5672
+
+  monitor:
+    build: ./monitor
+    depends_on:
+      - rabbitmq
+      - service-a
+      - service-b
+    environment:
+      RABBITMQ_URL: amqp://guest:guest@rabbitmq:5672
+
+  ws-server:
+    build: ./ws-server
+    ports:
+      - "4000:4000"
+    depends_on:
+      - rabbitmq
+    environment:
+      RABBITMQ_URL: amqp://guest:guest@rabbitmq:5672

@@ -1,0 +1,15 @@
+# Ignore package lock files
+**/package-lock.json
+
+# Ignore node_modules directories
+**/node_modules/
+
+# Ignore IDE/editor settings
+**/.vscode/
+**/.idea/
+
+# macOS system file
+**/.DS_Store
+
+# Environment variable files
+**/.env
