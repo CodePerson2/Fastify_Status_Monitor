@@ -40,16 +40,16 @@ docker-compose up --build
 ```mermaid
 graph TD
   subgraph Backend
-    A[service-a\n(auth)] -->|/health| Monitor
-    B[service-b\n(billing)] -->|/health| Monitor
-    C[service-c\n(notifications)] -->|/health| Monitor
-    D[service-d\n(analytics)] -->|/health| Monitor
-    Monitor -->|fanout| RabbitMQ
-    WS[ws-server] -->|fanout| RabbitMQ
-    WS -->|WS| Frontend
+    A["service-a (auth)"] --> Monitor
+    B["service-b (billing)"] --> Monitor
+    C["service-c (notifications)"] --> Monitor
+    D["service-d (analytics)"] --> Monitor
+    Monitor --> RabbitMQ
+    WS["ws-server"] --> RabbitMQ
+    WS --> Frontend
   end
 
-  Frontend -->|polls| Services
+  Frontend --> Services
 ```  
 
 - **Docker Compose** orchestrates: RabbitMQ, 4 mock services, `monitor`, `ws-server`, and `svelte-health`.
