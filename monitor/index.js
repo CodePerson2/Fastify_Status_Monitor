@@ -3,9 +3,11 @@ import amqp from 'amqplib';
 import AbortController from 'abort-controller';
 
 const SERVICES = [
-  { name: 'auth', url: 'http://service-a:3001/health' },
-  { name: 'billing', url: 'http://service-b:3002/health' },
-];
+  { "name": "auth", "url": "http://service-a:3001/health" },
+  { "name": "billing", "url": "http://service-b:3002/health" },
+  { "name": "notifications", "url": "http://service-c:3003/health" },
+  { "name": "analytics", "url": "http://service-d:3004/health" },
+]
 
 // Map to hold the latest status of each service
 const statuses = new Map(SERVICES.map(s => [s.name, false]));
@@ -67,7 +69,7 @@ async function startMonitor() {
         }
       })
       .catch(err => app.log.error('Health-check error:', err));
-  }, 2000);
+  }, 500);
 
   app.log.info('🔄 Service monitor running with change detection');
 }

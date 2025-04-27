@@ -3,7 +3,7 @@ import { createSlice, configureStore } from '@reduxjs/toolkit';
 
 const slice = createSlice({
   name: 'services',
-  initialState: { auth: false, billing: false },
+  initialState: { auth: false, billing: false, notifications: false, analytics: false },
   reducers: {
     updateStatus(state, action) {
       const { service, up } = action.payload;

@@ -1,19 +1,8 @@
 // src/lib/statusMonitor.js
+import { HEALTH_ENDPOINT, HEALTH_URLS, MSG_TYPES, WS_URL } from '../constants/constants';
 import { store, updateStatus } from '../store/serviceStatus';
 
-const WS_URL = 'ws://localhost:4000/ws';
 let ws, reconnectTimer;
-
-const HEALTH_URLS = {
-  auth:    'http://localhost:3001/health',
-  billing: 'http://localhost:3002/health',
-};
-
-const MSG_TYPES = {
-  WELCOME: 'welcome',
-  INITIAL_SNAPSHOT: 'initialSnapshot',
-  STATUS_UPDATE: 'statusUpdate',
-};
 
 function connect() {
   ws = new WebSocket(WS_URL);
@@ -62,7 +51,7 @@ function connect() {
 async function pollHealth() {
   for (const svc of Object.keys(HEALTH_URLS)) {
     try {
-      const res = await fetch(HEALTH_URLS[svc]);
+      const res = await fetch(HEALTH_URLS[svc].url + HEALTH_ENDPOINT);
       console.log('Polling', svc, 'status:', res.ok);
       store.dispatch(updateStatus({ service: svc, up: res.ok }));
     } catch {

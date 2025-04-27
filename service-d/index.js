@@ -14,9 +14,9 @@ app.get('/health', async (req, reply) => {
 app.get('/analytics', async (request, reply) => {
   // Example payload shape
   return {
-    userCount: 1234,
-    lastSync: new Date().toISOString(),
+    activeSessions: 87,
+    pageViews: 1024,
   };
 });
 
-app.listen({ port: 3001, host: '0.0.0.0' });
+app.listen({ port: 3004, host: '0.0.0.0' });

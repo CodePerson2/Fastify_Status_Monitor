@@ -11,12 +11,12 @@ app.get('/health', async (req, reply) => {
   return { status: 'ok' };
 });
 
-app.get('/analytics', async (request, reply) => {
+app.get('/notifications', async (request, reply) => {
   // Example payload shape
   return {
-    userCount: 1234,
-    lastSync: new Date().toISOString(),
+    pending: 42,
+    lastSent: new Date().toISOString(),
   };
 });
 
-app.listen({ port: 3001, host: '0.0.0.0' });
+app.listen({ port: 3003, host: '0.0.0.0' });
