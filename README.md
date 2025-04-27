@@ -40,16 +40,15 @@ docker-compose up --build
 ```mermaid
 graph TD
   subgraph Backend
-    A["service-a (auth)"] --> Monitor
-    B["service-b (billing)"] --> Monitor
-    C["service-c (notifications)"] --> Monitor
-    D["service-d (analytics)"] --> Monitor
-    Monitor --> RabbitMQ
+    Monitor -- "/health" --> A["service-a (auth)"]
+    Monitor -- "/health" --> B["service-b (billing)"]
+    Monitor -- "/health" --> C["service-c (notifications)"]
+    Monitor -- "/health" --> D["service-d (analytics)"]
+    Monitor -- "publish status" --> RabbitMQ
     WS["ws-server"] --> RabbitMQ
-    WS --> Frontend
+    WS -- "WS" --> Frontend
   end
 
-  Frontend --> Services
   Frontend -- "fetch /analytics" --> A
   Frontend -- "fetch /billing" --> B
   Frontend -- "fetch /notifications" --> C
