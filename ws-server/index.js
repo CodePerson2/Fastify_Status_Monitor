@@ -40,14 +40,14 @@ async function connectRabbitWithRetry(url, retries = 10, interval = 5000) {
 // Fetch initial snapshot of service statuses from monitor server
 async function fetchInitialStatuses() {
   const monitorUrl = process.env.MONITOR_URL || 'http://monitor:3001';
-  app.log.info('📡 Fetching initial service statuses from', monitorUrl);
+  app.log.info('Fetching initial service statuses from', monitorUrl);
   try {
     const res = await fetch(`${monitorUrl}/statuses`);
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     statuses = await res.json();
-    app.log.info('📦 Initial statuses loaded:', statuses);
+    app.log.info('Initial statuses loaded:', statuses);
   } catch (err) {
-    app.log.error('⚠️ Failed to fetch initial statuses:', err.message);
+    app.log.error('Failed to fetch initial statuses:', err.message);
     return {};
   }
 }
