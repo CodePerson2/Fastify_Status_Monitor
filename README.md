@@ -87,7 +87,7 @@ export const HEALTH_URLS = {
    - Subscribes to `services.status` and broadcasts `statusUpdate` messages to clients.
 3. **Frontend**:
    - Opens persistent WebSocket and stores statuses in a global Svelte store.
-   - Enables/disables UI elements (service buttons, forms) based on real-time statuses.
+   - Enables/disables UI elements (service buttons) based on real-time statuses.
    - On WS disconnect, falls back to polling `HEALTH_URLS` until restored.
    - Clicking a service button opens a modal and fetches mock data from `url + dataEndpoint`.
 
