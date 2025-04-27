@@ -38,7 +38,7 @@ async function checkService({ name, url }) {
 // Connect to RabbitMQ with retry logic
 async function startMonitor() {
   // Start HTTP server first so snapshot is always available
-  const port = process.env.MONITOR_PORT || 3001;
+  const port = process.env.MONITOR_PORT || 3000;
   await app.listen({ host: '0.0.0.0', port });
   app.log.info(`📡 Monitor HTTP endpoint running on port ${port}`);
 
