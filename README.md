@@ -50,6 +50,10 @@ graph TD
   end
 
   Frontend --> Services
+  Frontend -- "fetch /analytics" --> A
+  Frontend -- "fetch /billing" --> B
+  Frontend -- "fetch /notifications" --> C
+  Frontend -- "fetch /analytics" --> D
 ```  
 
 - **Docker Compose** orchestrates: RabbitMQ, 4 mock services, `monitor`, `ws-server`, and `svelte-health`.
