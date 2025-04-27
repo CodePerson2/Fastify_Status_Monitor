@@ -93,6 +93,14 @@ export const HEALTH_URLS = {
 
 ---
 
+## Testing
+
+   - Use Docker Desktop to turn on/off services a->d, monitor, ws-server
+   - The frontend will quickly reflect the changes to available services
+   - Turning the monitor or ws-server will force the frontend to fallback to checking each /health endpoint
+
+---
+
 ## 🚧 Robustness & Scaling
 
 - **High Availability**: Deploy multiple `monitor` and `ws-server` instances behind a load balancer.
