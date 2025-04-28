@@ -31,7 +31,7 @@ docker-compose up --build
 - **Frontend**: http://localhost:5173 (powered by Vite)
 - **WebSocket API**: ws://localhost:4000/ws
 - **RabbitMQ UI**: http://localhost:15672 (guest/guest)
-- **Monitor HTTP Endpoint**: http://localhost:3001/statuses
+- **Monitor HTTP Endpoint**: http://localhost:3000/statuses
 
 ---
 
