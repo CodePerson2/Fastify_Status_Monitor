@@ -31,7 +31,7 @@ docker-compose up --build
 - **Frontend**: http://localhost:5173 (powered by Vite)
 - **WebSocket API**: ws://localhost:4000/ws
 - **RabbitMQ UI**: http://localhost:15672 (guest/guest)
-- **Monitor HTTP Endpoint**: http://localhost:3001/statuses
+- **Monitor HTTP Endpoint**: http://localhost:3000/statuses
 
 ---
 
@@ -87,9 +87,17 @@ export const HEALTH_URLS = {
    - Subscribes to `services.status` and broadcasts `statusUpdate` messages to clients.
 3. **Frontend**:
    - Opens persistent WebSocket and stores statuses in a global Svelte store.
-   - Enables/disables UI elements (service buttons, forms) based on real-time statuses.
+   - Enables/disables UI elements (service buttons) based on real-time statuses.
    - On WS disconnect, falls back to polling `HEALTH_URLS` until restored.
    - Clicking a service button opens a modal and fetches mock data from `url + dataEndpoint`.
+
+---
+
+## Testing
+
+   - Use Docker Desktop to turn on/off services a->d, monitor, ws-server
+   - The frontend will quickly reflect the changes to available services
+   - Turning the monitor or ws-server will force the frontend to fallback to checking each /health endpoint
 
 ---
 
