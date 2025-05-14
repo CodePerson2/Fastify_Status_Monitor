@@ -14,7 +14,8 @@ const statuses = new Map(SERVICES.map(s => [s.name, false]));
 
 // Fastify server for snapshot endpoint
 const app = Fastify({ logger: true });
-app.get('/statuses', async (request, reply) => {
+// eslint-disable-next-line no-unused-vars
+app.get('/statuses', async (_request, _reply) => {
   // Return the latest snapshot of service statuses
   return Object.fromEntries(statuses);
 });
