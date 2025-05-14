@@ -78,3 +78,5 @@ startMonitor().catch(err => {
   console.error('Monitor startup failed:', err);
   process.exit(1);
 });
+
+export { checkService, statuses, app };
