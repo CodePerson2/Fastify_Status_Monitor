@@ -1,0 +1,28 @@
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  # … your existing jobs …
+
+  monitor-ci:
+    name: 'Monitor Service: Build & Test'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Build & run tests inside Docker
+        working-directory: monitor
+        run: |
+          # build up through the "test" stage; this will run npm test
+          docker build --target test -t monitor-test .
+
+      - name: (optional) lint or other checks
+        run: |
+          # you could also run npm run lint here, or extend the Dockerfile
+          docker run --rm monitor-test npm run lint

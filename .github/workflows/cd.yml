@@ -1,0 +1,28 @@
+on:
+  workflow_run:
+    workflows: ["ci.yml"]
+    types:
+      - completed
+
+jobs:
+  build-and-push-images:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    # …depends on your CI jobs…
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build & push monitor image
+        run: |
+          docker build \
+            --target release \
+            -t ghcr.io/${{ github.repository }}/monitor:${{ github.sha }} \
+            monitor
+          docker push ghcr.io/${{ github.repository }}/monitor:${{ github.sha }}
