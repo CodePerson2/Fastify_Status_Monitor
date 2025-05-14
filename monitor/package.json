@@ -5,9 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "vitest run *.unit.test.js",
-    "rabbitmq:up": "docker-compose -f docker-compose.integration.yml up -d",
-    "rabbitmq:down": "docker-compose -f docker-compose.integration.yml down",
-    "test:integration": "npm run rabbitmq:up && vitest run *.test.js && npm run rabbitmq:down"
+    "test:integration": "vitest run *.test.js"
   },
   "author": "",
   "license": "ISC",
