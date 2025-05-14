@@ -4,10 +4,10 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "vitest",
+    "test": "vitest run *.unit.test.js",
     "rabbitmq:up": "docker-compose -f docker-compose.integration.yml up -d",
     "rabbitmq:down": "docker-compose -f docker-compose.integration.yml down",
-    "test:integration": "npm run rabbitmq:up && vitest run integration && npm run rabbitmq:down"
+    "test:integration": "npm run rabbitmq:up && vitest run *.test.js && npm run rabbitmq:down"
   },
   "author": "",
   "license": "ISC",
