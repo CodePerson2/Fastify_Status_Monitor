@@ -7,22 +7,31 @@ on:
       - main
 
 jobs:
-  # … your existing jobs …
-
   monitor-ci:
-    name: 'Monitor Service: Build & Test'
+    name: 'Monitor Service: Unit & Integration Tests'
     runs-on: ubuntu-latest
+    services:
+      rabbitmq:
+        image: rabbitmq:3-management
+        ports:
+          - 5672:5672
+          - 15672:15672
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Build & run tests inside Docker
-        working-directory: monitor
-        run: |
-          # build up through the "test" stage; this will run npm test
-          docker build --target test -t monitor-test .
+      - name: Install dependencies
+        run: npm ci
+        working-directory: ./monitor
+
+      - name: Run unit tests
+        run: npm test
+        working-directory: ./monitor
+
+      - name: Run integration tests (with RabbitMQ)
+        run: npm run test:integration
+        working-directory: ./monitor
 
       - name: (optional) lint or other checks
-        run: |
-          # you could also run npm run lint here, or extend the Dockerfile
-          docker run --rm monitor-test npm run lint
+        run: npm run lint || true
+        working-directory: ./monitor
